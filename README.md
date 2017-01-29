@@ -25,38 +25,38 @@ I used the Udacity provided data set to train the model. The car could not succe
 ***Discard 50% of the data with steering angle 0***    
 The following histogram shows that the data set was skewed very heavily towards data with steering angle equal to 0. Training on this data set meant that car did not handle curves very well. In each batch, I discarded, at random, 50% of data samples with steering angle 0.    
 
-***Histogram of steering angles*** 
+***Histogram of steering angles***    
 ![](sample_images/steering_hist.png)   
 
 For each data sample, I also selected the image from center, left or right camera with equal probability. I added a small steering offset when the left or right images were selected so as to bias the car to return to the center of the lane. Here are images from the center, left and right cameras.
 
-***Left image***
+***Left image***   
 ![](sample_images/left_2.png)
 
-***Center image***
+***Center image***   
 ![](sample_images/center_2.png)
 
-***Right image***
+***Right image***   
 ![](sample_images/right_2.png)
 
 
-***Add random brightness to each image***   
+***Add random brightness to each image***      
 Since the second track has much different lighting and brightness than track 1, I adjusted each image by a random amount of brightness. This was based on the recommendations made by Vivek Yadav in the post: https://chatbotslife.com/using-augmentation-to-mimic-human-driving-496b569760a9#.8btw7h59y  
 Here is an example of an image with brightness adjustment: 
  
-***Original image***
+***Original image***   
 ![](sample_images/center_1.png)
 
-***Brightness adjusted image***
+***Brightness adjusted image***   
 ![](sample_images/brightness_1.png)
 
-***Translate each image vertically & horizontally***    
+***Translate each image vertically & horizontally***      
 The augmentation steps performed so far helped the car complete track 1 successfully and the car did well in track 2 except for one very sharp curve. I added a random translation to each image (again based on the Vivek Yadav post) in the vertical and horizontal direction. Here is an example of a translated image:   
 
-***Original images***
+***Original images***   
 ![](sample_images/center_1.png)![](sample_images/center_2.png)   
 
-***Translated images***
+***Translated images***   
 ![](sample_images/trans_1.png)![](sample_images/trans_2.png)
 
 
