@@ -1,5 +1,5 @@
 **1. Architecture**  
-I used the Nvidia pipeline as described in http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf. I made a couple of minor modifications to the pipeline by adding a cropping layer to remove 45 pixels from the top of each image. I did not use a dropout layer.
+I used the Nvidia pipeline as described in http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf. I made a couple of minor modifications to the pipeline by adding a cropping layer to remove 35 pixels from the top of each image. I added dropout (0.2) layer before the first fully connected layer - only because it appears to be a requirement in the project rubric. A dropout layers appears to hurt the model more that it helps (maybe because there is not a lot of data to start with?). This project benefits more from data augmentation than from fine-tuning the model. 
    
 The number of layers and sizes for each layer:   
 
@@ -10,12 +10,13 @@ Convolution layer 2 - Output size:  (28, 77, 36)
 Convolution layer 3 - Output size:  (12, 37, 48)  
 Convolution layer 4 - Output size:  (10, 35, 64)  
 Convolution layer 5 - Output size:  (8, 33, 64)  
-Flatten - Output size:  (16896)     
+Flatten - Output size:  (16896)    
+Dropout layer (0.2) - Output size:  (16896)     
 Fully connected layer 1 - Output size:  (100)  
 Fully connected layer 2 - Output size:  (50)  
 Fully connected layer 3 - Output size:  (10) 
 
-![](sample_images/arch.png) 
+![](sample_images/model_3.png) 
 
 
 **2. Data augmentation**  
@@ -27,7 +28,7 @@ The following histogram shows that the data set was skewed very heavily towards 
 ***Histogram of steering angles*** 
 ![](sample_images/steering_hist.png)   
 
-For each data sample, I also selected the image from center, left or right camera with equal probability. I added a small steering offset when the left or right images were selected so as to bias the car to return to the center of the lane. Here are images from the center, left and right cameras. Here are sample images from the left, center and right cameras.
+For each data sample, I also selected the image from center, left or right camera with equal probability. I added a small steering offset when the left or right images were selected so as to bias the car to return to the center of the lane. Here are images from the center, left and right cameras.
 
 ***Left image***
 ![](sample_images/left_2.png)

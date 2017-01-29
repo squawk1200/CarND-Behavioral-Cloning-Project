@@ -5,7 +5,7 @@ import cv2
 
 from PIL import Image
 from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense, Activation, Flatten, Lambda
+from keras.layers.core import Dense, Activation, Flatten, Lambda, Dropout
 from keras.layers.convolutional import Convolution2D, Cropping2D
 from keras.optimizers import Adam
 
@@ -178,6 +178,7 @@ def get_nvidia_model():
     print("Flatten: ", model.layers[-1].output_shape)
     
     # 9. Fully connected layer 1 - 100 neurons
+    model.add(Dropout(0.2))
     model.add(Dense(100))
     model.add(Activation('relu'))
     print("Fully connected layer 1: ", model.layers[-1].output_shape)
